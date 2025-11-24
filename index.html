@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Radar</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="map" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;"></div>
+  <div id="connectionHelper" class="map-overlay" style="position: absolute; top: 65px; right: 10px; transition: right 0.5s;">
+    <button id="connectionHandle" class="handle" style="position: absolute; top: 22px; left: -15px; z-index: 1000; height: 50px;"></button>
+    <div style="display: flex; align-items: center;"> 
+      <select id="connectionType" style="width: 170px; margin-right: 10px;">
+        <option value="local">Local</option>
+        <option value="ip">Remote</option>
+      </select>
+      <button id="setupConnection" class="search-button">Setup</button>
+    </div>
+    <input type="text" id="connectionIP" style="width: 250px; margin-top: 5px" placeholder="IP">
+  </div>
+  <div id="dragable" class="map-overlay">
+    <header id="dragzone">
+      <div class="tabs">
+        <div role="tablist" aria-label="Sample Tabs">
+          <button
+            role="tab"
+            aria-selected="true"
+            aria-controls="panel-1"
+            id="tab-1"
+            tabindex="0"
+            class="search-button"
+            style="margin-top: 3px; margin-bottom: 2px; margin-left: 4px;">
+            Map Settings
+          </button>
+          <button
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-2"
+            id="tab-2"
+            tabindex="-1"
+            class="search-button"
+            style="margin-top: 3px; margin-bottom: 2px;">
+            Loot Settings
+          </button>
+          <button
+            role="tab"
+            aria-selected="false"
+            aria-controls="panel-3"
+            id="tab-3"
+            tabindex="-1"
+            class="search-button"
+            style="margin-top: 3px; margin-bottom: 2px;">
+            Misc Settings
+          </button>
+        </div>
+        <div id="panel-1" role="tabpanel" tabindex="0" aria-labelledby="tab-1">
+          <div class="panel">
+              <div style="display: flex; align-items: center;"> 
+                <input type="checkbox" id="showExfil" checked>
+                <label for="showExfil" style="margin-top: 5px;"> Show exfiltration points</label>
+                <input type="checkbox" id="showClosedExfil" checked>
+                <label for="showClosedExfil" style="margin-top: 5px;"> Show unavailable exfiltration points</label>
+              </div>
+              <div style="display: flex; align-items: center;"> 
+                <input type="checkbox" id="detectMap" checked>
+                <label for="detectMap" style="margin-top: 5px;"> Detect current map</label>
+                <input type="checkbox" id="detectLevel" checked>
+                <label for="detectLevel" style="margin-top: 5px;"> Detect current floor (of selected player)</label>
+              </div>
+              <div style="display: flex; align-items: center;"> 
+                <input type="text" id="nameInput" style="width: 400px; margin-right: 10px; margin-top: 5px" placeholder="Input name of player to follow and then press set.">
+                <button class="search-button" style="width: 100px; margin-top: 5px" id="setNameButton">Set</button>
+              </div>
+                <input type="checkbox" id="followPlayer"/><label for="followPlayer" style="margin-top: 8px;"> Follow</label>
+                <select id="followTypeSelector" style="width: 160px; margin-top: 10px; margin-left: 10px;">
+                  <option value="host">Host</option>
+                  <option value="player">Player</option>
+              </select>
+          </div>
+        </div>
+        <div id="panel-2" role="tabpanel" tabindex="0" aria-labelledby="tab-2" hidden>
+          <p>...</p>
+        </div>
+        <div id="panel-3" role="tabpanel" tabindex="0" aria-labelledby="tab-3" hidden>
+          <p>...</p>
+        </div>
+      </div>
+    </header>
+  </div>
+  <div id="playerCount" class="map-overlay" style="position: absolute; top: 10px; right: 10px;">Players: <span id="playerCountNumber">0</span></div>
+  <div id="coordinates" class="map-overlay" style="position: absolute; bottom: 10px; right: 10px;"></div>
+  <div id="mapControls" class="map-overlay" style="width: 270px; position: absolute; top: 10px; left: 10px; transition: left 0.5s;">
+    <button id="mapHandle" class="handle" style="position: absolute; top: 142px; right: -15px; z-index: 1000; height: 50px;"></button>
+    <select id="mapSelector" onchange="changeMap()" style="width: 250px;">
+      <option value="factory">Factory</option>
+      <option value="shoreline">Shoreline</option>
+      <option value="customs">Customs</option>
+      <option value="groundZero">Ground Zero</option>
+      <option value="interchange">Interchange</option>
+      <option value="lighthouse">Lighthouse</option>
+      <option value="reserve">Reserve</option>
+      <option value="labs">Labs</option>
+      <option value="woods">Woods</option>
+      <option value="streets">Streets of Tarkov</option>
+    </select>
+    <div style="display: flex; align-items: center;"> 
+      <input type="radio" id="satelliteView" name="mapStyle" onchange="updateViewType('satellite');" /><label for="satelliteView" style="margin-top: 10px;"> Satellite</label>
+      <input type="radio" id="abstractView" name="mapStyle" onchange="updateViewType('abstract');" /><label for="abstractView" style="margin-top: 10px;"> Abstract</label>
+    </div>
+    <div class="spacer"></div>
+    <select id="levelSelector" style="width: 250px;" onchange="changeLayer()">
+    </select>
+    <div id="legend" style="margin-top: 10px;">
+      <ul style="list-style: none; padding: 0;">
+        <span>Map marker colors:</span>
+        <div class="spacer"></div>
+        <li style="display: flex; align-items: center; margin: 5px 0;">
+          <img src="/pmc_4.png" alt="legend_level4" style="width: 20px; height: 20px;">
+          <span style="margin-left: 5px;">Level 4</span>
+        </li>
+        <div class="spacer"></div>
+        <li style="display: flex; align-items: center; margin: 5px 0;">
+          <img src="/pmc_3.png" alt="legend_level3" style="width: 20px; height: 20px;">
+          <span style="margin-left: 5px;">Level 3</span>
+        </li>
+        <div class="spacer"></div>
+        <li style="display: flex; align-items: center; margin: 5px 0;">
+          <img src="/pmc_2.png" alt="legend_level2" style="width: 20px; height: 20px;">
+          <span style="margin-left: 5px;">Level 2</span>
+        </li>
+        <div class="spacer"></div>
+        <li style="display: flex; align-items: center; margin: 5px 0;">
+          <img src="/pmc_1.png" alt="legend_level1" style="width: 20px; height: 20px;">
+          <span style="margin-left: 5px;">Level 1 / Ground</span>
+        </li>
+        <div class="spacer"></div>
+        <li style="display: flex; align-items: center; margin: 5px 0;">
+          <img src="/pmc_0.png" alt="legend_basement" style="width: 20px; height: 20px;">
+          <span style="margin-left: 5px;">Basement</span>
+        </li>
+      </ul>
+      </div>
+    </div>
+    <div id="randomControls" class="map-overlay" style="width: 270px; position: absolute; top: 355px; left: 10px; transition: left 0.5s;">
+      <button id="randomHandle" class="handle" style="position: absolute; top: 53px; right: -15px; z-index: 1000; height: 50px;"></button>   
+      
+    </div>
+    <div id="itemControls" class="map-overlay" style="width: 270px; position: absolute; top: 522px; left: 10px; transition: left 0.5s;">   
+      <button id="itemHandle" class="handle" style="position: absolute; top: 27px; right: -15px; z-index: 1000; height: 50px;"></button>   
+      <div class="loot-container">
+        <div style="display: flex; align-items: center;"> 
+          <input type="checkbox" id="showLoot" checked>
+          <label for="showLoot" style="margin-top: 5px;"> Ground Loot</label>
+          <input type="checkbox" id="showContainers" checked>
+          <label for="showContainers" style="margin-top: 5px;"> Containers</label>
+        </div>
+        <input type="range" min="0" max="300000" value="0" id="mySlider" style="margin-top: 5px;">
+        <br>
+        <label>Minimum item price:</label>
+        <label id="sliderValue">0</label>
+      </div>
+    </div>
+    <div class="map-overlay" id="searchControls" style="width: 400px; position: absolute; top: 627px; left: 10px; transition: left 0.5s;">
+      <button id="searchHandle" class="handle" style="position: absolute; top: 143px; right: -15px; z-index: 1000; height: 50px;"></button>
+      <div style="display: flex; align-items: center; gap: 10px; position: relative;">
+          <input type="text" id="searchInput" style="width: 310px;" class="itemSearch" placeholder="Search for item by name or ID.">
+          <div id="suggestions"></div>
+          <button class="search-button" id="clearButton">Clear</button>
+      </div>
+      <div id="results" class="scroll-view">
+      </div>
+      <button class="search-button" style="margin-right: 5px; width: 198px;" id="highlightButton">Highlight Selected Item</button>
+      <button class="search-button" style="margin-bottom: 5px; width: 172px;" id="highlightAllButton">Highlight All Items</button>
+    </div>  
+    <div id="debug" class="map-overlay" style="width: 247px; position: absolute; top: 880px; left: 450px;">   
+      <div class="debug-controls">
+        <button id="debugPlayers" type="button">Debug Players</button>
+        <button id="debugLoot" type="button">Debug Loot</button>
+        <button id="debugWorld" type="button">Debug Exfil</button>
+        <button id="debugFollow" type="button">Debug Follow</button>
+        <button id="debugLevel" type="button">Auto Levels</button>
+        <button id="debugMap" type="button">Auto Map</button>
+      </div>
+    </div>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="websocket.js"></script>
+    <script src="transitionHelper.js"></script>
+    <script src="follow.js"></script>
+    <script src="icons.js"></script>
+    <script src="maps.js"></script>
+    <script src="map.js"></script>
+    <script src="search.js"></script>
+    <script src="level.js"></script>
+    <script src="drag.js"></script>
+    <script src="leaflet.rotatedMarker.js"></script>
+</body>
+</html>
