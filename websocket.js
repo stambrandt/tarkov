@@ -29,7 +29,7 @@ const debugGameState = {
           Floor: 1,
           ID: "player_base_address_1",
           Side: 1,
-          Name: [80, 108, 97, 121, 101, 114, 79, 110, 101]
+          Name: [80, 108, 97, 121, 101, 114, 79, 110, 101] //name is sent as char array to support cyrillic characters
         }
       },
       {
