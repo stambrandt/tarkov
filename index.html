@@ -22,7 +22,7 @@
     </div>
     <input type="text" id="connectionIP" style="width: 250px; margin-top: 5px" placeholder="IP">
   </div>
-  <div id="dragable" class="map-overlay">
+  <div id="dragable" class="map-overlay" style="position: absolute; bottom: 100px; right: 20px;">
     <header id="dragzone">
       <div class="tabs">
         <div role="tablist" aria-label="Sample Tabs">
@@ -44,7 +44,7 @@
             tabindex="-1"
             class="search-button"
             style="margin-top: 3px; margin-bottom: 2px;">
-            Loot Settings
+            Debugging
           </button>
           <button
             role="tab"
@@ -83,7 +83,12 @@
           </div>
         </div>
         <div id="panel-2" role="tabpanel" tabindex="0" aria-labelledby="tab-2" hidden>
-          <p>...</p>
+          <button id="debugPlayers" type="button">Debug Create Players</button>
+          <button id="debugLoot" type="button">Debug Create Loot</button>
+          <button id="debugWorld" type="button">Debug Displaying Exfils</button>
+          <button id="debugFollow" type="button">Debug Following Player</button>
+          <button id="debugLevel" type="button">Auto Detect Levels</button>
+          <button id="debugMap" type="button">Auto Detect Map</button>
         </div>
         <div id="panel-3" role="tabpanel" tabindex="0" aria-labelledby="tab-3" hidden>
           <p>...</p>
@@ -171,16 +176,6 @@
       </div>
       <button class="search-button" style="margin-right: 5px; width: 198px;" id="highlightButton">Highlight Selected Item</button>
       <button class="search-button" style="margin-bottom: 5px; width: 172px;" id="highlightAllButton">Highlight All Items</button>
-    </div>  
-    <div id="debug" class="map-overlay" style="width: 247px; position: absolute; top: 880px; left: 450px;">   
-      <div class="debug-controls">
-        <button id="debugPlayers" type="button">Debug Players</button>
-        <button id="debugLoot" type="button">Debug Loot</button>
-        <button id="debugWorld" type="button">Debug Exfil</button>
-        <button id="debugFollow" type="button">Debug Follow</button>
-        <button id="debugLevel" type="button">Auto Levels</button>
-        <button id="debugMap" type="button">Auto Map</button>
-      </div>
     </div>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="websocket.js"></script>
