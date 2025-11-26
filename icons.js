@@ -5,31 +5,31 @@ var TeamIcon = L.icon({
 })
 
 var PMC_Level0 = L.icon({
-    iconUrl: '/icons/pmc_0.png',
+    iconUrl: 'icons/pmc_0.png',
     iconSize: [20, 20],
     iconAnchor: [10, 7]
 })
 
 var PMC_Level1 = L.icon({
-    iconUrl: '/icons/pmc_1.png',
+    iconUrl: 'icons/pmc_1.png',
     iconSize: [20, 20],
     iconAnchor: [10, 7]
 })
 
 var PMC_Level2 = L.icon({
-    iconUrl: '/icons/pmc_2.png',
+    iconUrl: 'icons/pmc_2.png',
     iconSize: [20, 20],
     iconAnchor: [10, 7]
 })
 
 var PMC_Level3 = L.icon({
-    iconUrl: '/icons/pmc_3.png',
+    iconUrl: 'icons/pmc_3.png',
     iconSize: [20, 20],
     iconAnchor: [10, 7]
 })
 
 var PMC_Level4 = L.icon({
-    iconUrl: '/icons/pmc_4.png',
+    iconUrl: 'icons/pmc_4.png',
     iconSize: [20, 20],
     iconAnchor: [10, 7]
 })
@@ -41,91 +41,91 @@ var BotIcon = L.icon({
 })
 
 var Bot_Level0 = L.icon({
-  iconUrl: '/icons/Bot_0.png',
+  iconUrl: 'icons/Bot_0.png',
      iconSize: [28, 32],
      iconAnchor: [14, 14]
 })
 
 var Bot_Level1 = L.icon({
-  iconUrl: '/icons/Bot_1.png',
+  iconUrl: 'icons/Bot_1.png',
      iconSize: [28, 32],
      iconAnchor: [14, 14]
 })
 
 var Bot_Level2 = L.icon({
-  iconUrl: '/icons/Bot_2.png',
+  iconUrl: 'icons/Bot_2.png',
      iconSize: [28, 32],
      iconAnchor: [14, 14],
 })
 
 var Bot_Level3 = L.icon({
-  iconUrl: '/icons/Bot_3.png',
+  iconUrl: 'icons/Bot_3.png',
      iconSize: [28, 32],
      iconAnchor: [14, 14]
 })
 
 var Bot_Level4 = L.icon({
-  iconUrl: '/icons/Bot_4.png',
+  iconUrl: 'icons/Bot_4.png',
      iconSize: [28, 32],
      iconAnchor: [14, 14]
 })
 
 var Scav_Level0 = L.icon({
-  iconUrl: '/icons/Scav_0.png',
+  iconUrl: 'icons/Scav_0.png',
       iconSize: [28, 28],
       iconAnchor: [14, 0]
 })
 
 var Scav_Level1 = L.icon({
-  iconUrl: '/icons/Scav_1.png',
+  iconUrl: 'icons/Scav_1.png',
       iconSize: [28, 28],
       iconAnchor: [14, 14]
 })
 
 var Scav_Level2 = L.icon({
-  iconUrl: '/icons/Scav_2.png',
+  iconUrl: 'icons/Scav_2.png',
       iconSize: [28, 28],
       iconAnchor: [14, 14]
 })
 
 var Scav_Level3 = L.icon({
-  iconUrl: '/icons/Scav_3.png',
+  iconUrl: 'icons/Scav_3.png',
       iconSize: [28, 28],
       iconAnchor: [14, 14]
 })
 
 var Scav_Level4 = L.icon({
-  iconUrl: '/icons/Scav_4.png',
+  iconUrl: 'icons/Scav_4.png',
       iconSize: [28, 28],
       iconAnchor: [14, 14]
 })
 
 var Boss_Level0 = L.icon({
-  iconUrl: '/icons/Boss_0.png',
+  iconUrl: 'icons/Boss_0.png',
       iconSize: [28, 30],
       iconAnchor: [14, 15]
 })
 
 var Boss_Level1 = L.icon({
-  iconUrl: '/icons/Boss_1.png',
+  iconUrl: 'icons/Boss_1.png',
       iconSize: [28, 30],
       iconAnchor: [14, 15]
 })
 
 var Boss_Level2 = L.icon({
-  iconUrl: '/icons/Boss_2.png',
+  iconUrl: 'icons/Boss_2.png',
       iconSize: [28, 30],
       iconAnchor: [14, 15]
 })
 
 var Boss_Level3 = L.icon({
-  iconUrl: '/icons/Boss_3.png',
+  iconUrl: 'icons/Boss_3.png',
       iconSize: [28, 30],
       iconAnchor: [14, 15]
 })
 
 var Boss_Level4 = L.icon({
-  iconUrl: '/icons/Boss_4.png',
+  iconUrl: 'icons/Boss_4.png',
       iconSize: [28, 30],
       iconAnchor: [14, 15]
 })
@@ -155,7 +155,7 @@ var Closed_Exfil_Icon = L.icon({
 })
 
 var Corpse_Icon = L.icon({
-  iconUrl: '/icons/x.png',
+  iconUrl: 'icons/x.png',
       iconSize: [25, 25],
       iconAnchor: [13, 25]
 })

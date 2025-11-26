@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
     const connectionHelper = document.getElementById('connectionHelper');
     const handle = document.getElementById('connectionHandle');
+
+    if (!handle || !connectionHelper) return;
+
     let isVisible = true;
 
     handle.addEventListener('mousedown', function() {
@@ -16,6 +19,9 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     const mapControls = document.getElementById('mapControls');
     const handle = document.getElementById('mapHandle');
+
+    if (!handle || !mapControls) return;
+
     let isVisible = true;
 
     handle.addEventListener('mousedown', function() {
@@ -31,6 +37,9 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     const randomControls = document.getElementById('randomControls');
     const handle = document.getElementById('randomHandle');
+
+    if (!handle || !randomControls) return;
+
     let isVisible = true;
 
     handle.addEventListener('mousedown', function() {
@@ -46,6 +55,9 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     const itemControls = document.getElementById('itemControls');
     const handle = document.getElementById('itemHandle');
+
+    if (!handle || !itemControls) return;
+
     let isVisible = true;
 
     handle.addEventListener('mousedown', function() {
@@ -61,6 +73,9 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
     const searchControls = document.getElementById('searchControls');
     const handle = document.getElementById('searchHandle');
+
+    if (!handle || !searchControls) return;
+
     let isVisible = true;
 
     handle.addEventListener('mousedown', function() {

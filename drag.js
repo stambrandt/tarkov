@@ -22,6 +22,13 @@ const dragElement = (element, dragzone) => {
     };
 
     const dragMouseDown = (event) => {
+      const target = event.target;
+      const tagName = target.tagName.toLowerCase();
+
+      if (tagName === 'input' || tagName === 'select' || tagName === 'button' || tagName === 'textarea') {
+        return;
+      }
+
       event.preventDefault();
 
       pos3 = event.clientX;

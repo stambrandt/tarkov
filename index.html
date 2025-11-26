@@ -11,8 +11,8 @@
 </head>
 <body>
   <div id="map" style="width: 100%; height: 100%; position: absolute; top: 0; left: 0;"></div>
-  <div id="connectionHelper" class="map-overlay" style="position: absolute; top: 65px; right: 10px; transition: right 0.5s;">
-    <button id="connectionHandle" class="handle" style="position: absolute; top: 22px; left: -15px; z-index: 1000; height: 50px;"></button>
+  <div id="connectionHelper" class="map-overlay" style="position: absolute; top: 63px; right: 10px; transition: right 0.5s;">
+    <button id="connectionHandle" class="handle" style="position: absolute; top: 20px; left: -15px; z-index: 1000; height: 50px;"></button>
     <div style="display: flex; align-items: center;"> 
       <select id="connectionType" style="width: 170px; margin-right: 10px;">
         <option value="local">Local</option>
@@ -119,38 +119,34 @@
         <span>Map marker colors:</span>
         <div class="spacer"></div>
         <li style="display: flex; align-items: center; margin: 5px 0;">
-          <img src="/pmc_4.png" alt="legend_level4" style="width: 20px; height: 20px;">
+          <img src="icons/pmc_4.png" alt="legend_level4" style="width: 20px; height: 20px;">
           <span style="margin-left: 5px;">Level 4</span>
         </li>
         <div class="spacer"></div>
         <li style="display: flex; align-items: center; margin: 5px 0;">
-          <img src="/pmc_3.png" alt="legend_level3" style="width: 20px; height: 20px;">
+          <img src="icons/pmc_3.png" alt="legend_level3" style="width: 20px; height: 20px;">
           <span style="margin-left: 5px;">Level 3</span>
         </li>
         <div class="spacer"></div>
         <li style="display: flex; align-items: center; margin: 5px 0;">
-          <img src="/pmc_2.png" alt="legend_level2" style="width: 20px; height: 20px;">
+          <img src="icons/pmc_2.png" alt="legend_level2" style="width: 20px; height: 20px;">
           <span style="margin-left: 5px;">Level 2</span>
         </li>
         <div class="spacer"></div>
         <li style="display: flex; align-items: center; margin: 5px 0;">
-          <img src="/pmc_1.png" alt="legend_level1" style="width: 20px; height: 20px;">
+          <img src="icons/pmc_1.png" alt="legend_level1" style="width: 20px; height: 20px;">
           <span style="margin-left: 5px;">Level 1 / Ground</span>
         </li>
         <div class="spacer"></div>
         <li style="display: flex; align-items: center; margin: 5px 0;">
-          <img src="/pmc_0.png" alt="legend_basement" style="width: 20px; height: 20px;">
+          <img src="icons/pmc_0.png" alt="legend_basement" style="width: 20px; height: 20px;">
           <span style="margin-left: 5px;">Basement</span>
         </li>
       </ul>
       </div>
     </div>
-    <div id="randomControls" class="map-overlay" style="width: 270px; position: absolute; top: 355px; left: 10px; transition: left 0.5s;">
-      <button id="randomHandle" class="handle" style="position: absolute; top: 53px; right: -15px; z-index: 1000; height: 50px;"></button>   
-      
-    </div>
-    <div id="itemControls" class="map-overlay" style="width: 270px; position: absolute; top: 522px; left: 10px; transition: left 0.5s;">   
-      <button id="itemHandle" class="handle" style="position: absolute; top: 27px; right: -15px; z-index: 1000; height: 50px;"></button>   
+    <div id="itemControls" class="map-overlay" style="width: 270px; position: absolute; top: 345px; left: 10px; transition: left 0.5s;">   
+      <button id="itemHandle" class="handle" style="position: absolute; top: 20px; right: -15px; z-index: 1000; height: 50px;"></button>   
       <div class="loot-container">
         <div style="display: flex; align-items: center;"> 
           <input type="checkbox" id="showLoot" checked>
@@ -164,8 +160,8 @@
         <label id="sliderValue">0</label>
       </div>
     </div>
-    <div class="map-overlay" id="searchControls" style="width: 400px; position: absolute; top: 627px; left: 10px; transition: left 0.5s;">
-      <button id="searchHandle" class="handle" style="position: absolute; top: 143px; right: -15px; z-index: 1000; height: 50px;"></button>
+    <div class="map-overlay" id="searchControls" style="width: 400px; position: absolute; top: 446px; left: 10px; transition: left 0.5s;">
+      <button id="searchHandle" class="handle" style="position: absolute; top: 130px; right: -15px; z-index: 1000; height: 50px;"></button>
       <div style="display: flex; align-items: center; gap: 10px; position: relative;">
           <input type="text" id="searchInput" style="width: 310px;" class="itemSearch" placeholder="Search for item by name or ID.">
           <div id="suggestions"></div>

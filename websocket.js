@@ -29,18 +29,18 @@ const debugGameState = {
           Floor: 1,
           ID: "player_base_address_1",
           Side: 1,
-          Name: "PlayerOne"
+          Name: [80, 108, 97, 121, 101, 114, 79, 110, 101]
         }
       },
       {
         position: { x: 60.7, y: 30.4, z: 0.0 },
-        rotation: { x: 0.0, y: 0.0 },
+        rotation: { x: 20.0, y: 0.0 },
         attributes: {
           Type: "Player",
           Floor: 2,
           ID: "player_base_address_2",
           Side: 1,
-          Name: "PlayerTwo"
+          Name: [80, 108, 97, 121, 101, 114, 84, 119, 111]
         }
       }
     ],
@@ -128,17 +128,16 @@ debugPlayers.onclick = function () {
   createExfils();
 };
 debugFollow.onclick = function () {
-  console.log("hi");
   follow();
 }
 debugLevel.onclick = function () {
   new_json_packet = debugGameState;
-  console.log("debugigng levels");
+  console.log("debuggng levels");
   autoUpdateLayer();
 }
 debugMap.onclick = function () {
   new_json_packet = debugGameState;
-  console.log("debugigng map levels");
+  console.log("debugging map levels");
   autoUpdateMap();
 }
 
@@ -219,7 +218,7 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     ws.onerror = function(error) {
-      //console.log("WebSocket error:", error);
+      //console.log(" websocket error:", error);
     };
 
     ws.onclose = function(event) {

@@ -12,7 +12,8 @@ function getHostPlayer() {
 }
 
 function getPlayerByName(name) {
-    const player = new_json_packet.players.find(player => player.attributes.Name == name);
+    const player = new_json_packet.players.find(player => charCodesToString(player.attributes.Name) == name);
+    console.log("found: ", player)
     return player;
 }
 
